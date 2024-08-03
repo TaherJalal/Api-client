@@ -18,11 +18,19 @@ model User {
   username String @unique
   password String
 
-  workspaces String[]
+  workspaces Workspace[]
 }
 
 model Workspace {
   id String @id @default(uuid())
-  members String[]
-  apis String[]
+  members User[]
+  apis Endpoint[]
+}
+
+model Endpoint {
+  id String @id @default(uuid())
+  httpMethod String
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  workspaceId String
 }
