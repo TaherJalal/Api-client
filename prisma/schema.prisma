@@ -23,6 +23,9 @@ model User {
 
 model Workspace {
   id String @id @default(uuid())
+
+
+
   members User[]
   apis Endpoint[]
 }
